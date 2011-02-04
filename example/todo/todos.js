@@ -78,6 +78,7 @@ $(function(){
     this.remove = function(event, data){                
       console.log(data)
       pema.removeModel("todos", data)
+      pema.redirect_to("")
     };
 
     pema.observer.subscribe("#/todo/create",         self.create );
