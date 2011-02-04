@@ -39,21 +39,26 @@ $(function(){
   pema.addView("TodoListView", 
     function () {
       var  self = this;
-      var $todoList     = $('#todo-list');          
-      var $todoTemplate = $('#item-template');
+      var $todoList     = $('#todo-list');    
 
       this.init = function()  {      
-        this.populateList($todoList, pema.models.todos.all(), $todoTemplate )      
+        this.populateTodoList()      
         return this;
       }    
 
-      this.populateList = function( list ,collection, template) {
-        _.map( collection, function(model){list.append( pema.render( template, model ) ) })
+      this.populateTodoList = function( ) {
+        var $taskTemplate = $('#item-template');
+
+        // render each todo item and append it to the tood-list node
+        pema.models.todos.each(  function(model){
+          $todoList.append( pema.render( "#item-template", this ) ) }
+        )
+
       }
       
       this.update = function(new_todo) {
         $todoList.empty(); 
-        self.populateList($todoList, pema.models.todos.all(), $todoTemplate ); 
+        self.populateTodoList( ); 
       }      
     }
   )
