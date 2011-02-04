@@ -2,6 +2,7 @@ $(function(){
 
   // Todo Model
   var Todo = Model("Todo", {
+    persistence: Model.localStorage(), 
     markAsDone: function() {
       this.attr("done", true)
     }
